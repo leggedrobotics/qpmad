@@ -1,6 +1,0 @@
-set(QPMAD_BUILD_TESTS       "OFF"   CACHE STRING "")
-set(QPMAD_ENABLE_TRACING    "OFF"   CACHE STRING "")
-
-set(CMAKE_SYSROOT           "${CMAKE_CURRENT_LIST_DIR}/../install/" CACHE STRING "")
-set(CMAKE_INSTALL_PREFIX    "${CMAKE_SYSROOT}/usr/"                 CACHE STRING "")
-

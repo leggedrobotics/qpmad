@@ -8,16 +8,6 @@
     @brief
 */
 
-#pragma once
-
-#include <qpmad/config.h>
-
-// tracing functions allocate stuff
-#ifndef QPMAD_ENABLE_TRACING
-#    define EIGEN_RUNTIME_NO_MALLOC
-#endif
-
-
 #define BOOST_TEST_MODULE qpmad
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
@@ -38,7 +28,7 @@ struct GlobalFixtureConfig
 {
     GlobalFixtureConfig()
     {
-        // boost::unit_test::unit_test_log.set_threshold_level(boost::unit_test::log_successful_tests);
+        // boost::unit_test::unit_test_log.set_threshold_level( boost::unit_test::log_successful_tests );
         boost::unit_test::results_reporter::set_level(boost::unit_test::DETAILED_REPORT);
     }
     ~GlobalFixtureConfig()

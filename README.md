@@ -1,3 +1,6 @@
+### Fork from https://github.com/asherikov/qpmad
+Note from developers, numopt seems to have the same functionality. 
+In the long run we try to use numopt, see this issue https://git.anybotics.com/anybotics/anybotics/-/issues/9507 
 qpmad
 =====
 <table>
@@ -16,8 +19,8 @@ qpmad
         </a>
     </td>
     <td align="center">
-        <a href="https://cloudsmith.io/~asherikov-aV7/repos/all/packages/detail/deb/qpmad/latest/a=all;d=any-distro%252Fany-version;t=binary/">
-        <img src="https://api-prd.cloudsmith.io/v1/badges/version/asherikov-aV7/all/deb/qpmad/latest/a=all;d=any-distro%252Fany-version;t=binary/?render=true&show_latest=true" alt="Latest version of 'qpmad' @ Cloudsmith" />
+        <a href="https://cloudsmith.io/~asherikov-aV7/repos/qpmad/packages/detail/deb/qpmad/latest/a=all;d=any-distro%252Fany-version;t=binary/">
+        <img src="https://api-prd.cloudsmith.io/v1/badges/version/asherikov-aV7/qpmad/deb/qpmad/latest/a=all;d=any-distro%252Fany-version;t=binary/?render=true&show_latest=true" alt="Latest version of 'qpmad' @ Cloudsmith">
         </a>
     </td>
   </tr>
@@ -39,7 +42,6 @@ Contents
 * [Dependencies](#dependencies)
 * [Notes](#notes)
 * [Documentation](#docs)
-* [FAQ](#faq)
 
 
 <a name="links"></a>
@@ -47,6 +49,7 @@ Links
 =====
 * Doxygen: https://asherikov.github.io/qpmad/
 * GitHub: https://github.com/asherikov/qpmad
+* CI: https://travis-ci.org/asherikov/qpmad
 
 
 <a name="features"></a>
@@ -54,7 +57,7 @@ Features:
 =========
 - Double sided inequality constraints: `lb <= A*x <= ub`. Such constraints
   can be handled in a more efficient way than `lb <= A*x` commonly used in
-  other implementations of the algorithm. `A` can be sparse.
+  other implementations of the algorithm.
 
 - Simple bounds: `lb <= x <= ub`.
 
@@ -71,10 +74,8 @@ Features:
 
 - Does not compute/update Lagrange multipliers for equality constraints.
 
-- Three types of memory allocation:
-    - on demand (default);
-    - on compile time using template parameters;
-    - dynamic preallocation using `reserve()` method.
+- Solver can be instantiated with static dimensions in order to avoid memory
+  allocations.
 
 
 <a name="dependencies"></a>
@@ -119,11 +120,3 @@ Documentation and examples
 * Precompiled Doxygen documentation: https://asherikov.github.io/qpmad/
 * Introductory demo: https://asherikov.github.io/qpmad/DEMO.html [`./test/dependency/demo.cpp`]
 
-
-<a name="faq"></a>
-FAQ
-===
-
-'Non-negative step lengths expected' exception
-----------------------------------------------
-See discussion at https://github.com/asherikov/qpmad/issues/2

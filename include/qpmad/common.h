@@ -10,20 +10,14 @@
 
 #pragma once
 
-#include "config.h"
-
-#ifdef QPMAD_PEDANTIC_LICENSE
-#    define EIGEN_MPL2_ONLY
-#endif
-
 #include <stdexcept>
 #include <cmath>
 #include <Eigen/Dense>
-#include <Eigen/Sparse>
 
+#include "qpmad/config.h"
 
-#include "cpput_config.h"
-#include "cpput_exception.h"
+// #include "qpmad/cpput_config.h"
+// #include "qpmad/cpput_exception.h"
 
 
 #ifdef QPMAD_ENABLE_TRACING
@@ -37,8 +31,8 @@ namespace qpmad
 {
     typedef EIGEN_DEFAULT_DENSE_INDEX_TYPE MatrixIndex;
 
-    typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> QPMatrix;  /// @deprecated
-    typedef Eigen::Matrix<double, Eigen::Dynamic, 1> QPVector;               /// @deprecated
+    typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> QPMatrix; // deprecated
+    typedef Eigen::Matrix<double, Eigen::Dynamic, 1> QPVector; // deprecated
 
 
     template <class t_VectorType>

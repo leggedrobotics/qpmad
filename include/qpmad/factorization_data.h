@@ -27,16 +27,6 @@ namespace qpmad
 
 
     public:
-        void reserve(const MatrixIndex primal_size)
-        {
-            QLi_aka_J.resize(primal_size, primal_size);
-            R.resize(primal_size, primal_size + 1);
-#ifdef QPMAD_USE_HOUSEHOLDER
-            householder_workspace_.resize(primal_size, primal_size);
-#endif
-        }
-
-
         template <class t_MatrixType>
         void initialize(
                 t_MatrixType &H,
@@ -46,6 +36,7 @@ namespace qpmad
         {
             primal_size_ = primal_size;
 
+            QLi_aka_J.resize(primal_size_, primal_size_);
             QLi_aka_J.template triangularView<Eigen::StrictlyLower>().setZero();
             switch (hessian_type)
             {
@@ -62,11 +53,15 @@ namespace qpmad
                     break;
 
                 default:
-                    QPMAD_UTILS_THROW("Unexpected Hessian type in factorization.");
+                    throw("Unexpected Hessian type in factorization.");
                     break;
             }
 
+            R.resize(primal_size_, primal_size_ + 1);
             length_nonzero_head_d_ = primal_size_;
+#ifdef QPMAD_USE_HOUSEHOLDER
+            householder_workspace_.resize(primal_size_, primal_size_);
+#endif
         }
 
 
@@ -259,14 +254,14 @@ namespace qpmad
         template <class t_VectorType, class t_ActiveSet>
         void computeDualStepDirection(t_VectorType &step_direction, const t_ActiveSet &active_set)
         {
-            step_direction.segment(active_set.num_equalities_, active_set.num_inequalities_) =
-                    -R.col(active_set.size_).segment(active_set.num_equalities_, active_set.num_inequalities_);
-            R.block(active_set.num_equalities_,
-                    active_set.num_equalities_,
-                    active_set.num_inequalities_,
-                    active_set.num_inequalities_)
-                    .template triangularView<Eigen::Upper>()
-                    .solveInPlace(step_direction.segment(active_set.num_equalities_, active_set.num_inequalities_));
+            step_direction.segment(active_set.num_equalities_, active_set.num_inequalities_).noalias() =
+                    -R.block(active_set.num_equalities_,
+                             active_set.num_equalities_,
+                             active_set.num_inequalities_,
+                             active_set.num_inequalities_)
+                             .template triangularView<Eigen::Upper>()
+                             .solve(R.col(active_set.size_)
+                                            .segment(active_set.num_equalities_, active_set.num_inequalities_));
         }
     };
 }  // namespace qpmad

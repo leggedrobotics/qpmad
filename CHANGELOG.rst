@@ -2,21 +2,6 @@
 Changelog for package ariles_ros
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.3.0 (2022-12-10)
-------------------
-
-* API refactoring: modernize and generalize
-* Small API fix to enable integration in https://github.com/isri-aist/QpSolverCollection
-
-
-1.2.0 (2022-11-20)
-------------------
-
-* Added `reserve()` method
-* Added limited sparsity support
-* Fixed unnecessary memory allocations
-
-
 1.1.1 (2021-12-24)
 ------------------
 
