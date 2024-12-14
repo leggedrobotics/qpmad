@@ -14,8 +14,7 @@
 #include <cmath>
 #include <Eigen/Dense>
 
-#include "qpmad/config.h"
-
+// #include "qpmad/config.h"
 // #include "qpmad/cpput_config.h"
 // #include "qpmad/cpput_exception.h"
 
